@@ -19,6 +19,11 @@ function goBack() {
 			<h1>Quantum Original2</h1>
 		</div>
 		<h2 class="abstract">颠覆原版游戏体验，<br>更由QOSP组件强势驱动。</h2>
+		<div class="links">
+			<a href="https://github.com/glowingstone124"><img src="@/assets/code.svg">Github</a>
+			<a href="https://qm.qq.com/q/7rjlo2MSxa"><img src="@/assets/qq.svg">QQ群</a>
+			<a href="mailto:hanseroffical@outlook.com"><img src="@/assets/mail.svg">电子邮件</a>
+		</div>
 		</span>
 			<div class="content">
 				<p class="sector">开放包容，海纳百川</p>
@@ -79,6 +84,31 @@ function goBack() {
 	text-align: left;
 }
 
+.links {
+	margin: auto;
+	align-content: center;
+	display: flex;
+	justify-content: center;
+	background: #a29e9e40;
+	border-radius: 30px;
+	max-width: 30%;
+	padding: 10px;
+	a{
+		text-decoration: none;
+		align-content: center;
+		justify-content: center;
+		display: flex;
+		font-size: 1.2rem;
+		color: #fff;
+		margin: 0 10px;
+		padding: 10px;
+		border-radius: 18px;
+	}
+	a:hover{
+		background: rgba(222, 219, 219, 0.38);
+	}
+}
+
 .text {
 	font-weight: 500;
 	font-size: 1.2rem;
@@ -86,7 +116,7 @@ function goBack() {
 }
 
 important {
-	color: #87e8e8;
+	color: #2dc0ce;
 }
 
 .back-btn {
@@ -139,7 +169,7 @@ important {
 }
 .container-front {
 	backdrop-filter: blur(10px) brightness(50%);
-	background: rgba(26, 171, 173, 0.4);
+	background: rgba(64, 168, 137, 0.4);
 	border-radius: 20px;
 	padding-bottom: 30px;
 }
