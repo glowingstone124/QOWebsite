@@ -10,7 +10,6 @@
 				<span class="tip">点击“继续”来跳转</span>
 			</p>
 
-			<!-- 按钮容器调整为弹性布局 -->
 			<div class="button-group">
 				<button class="btn back" @click="goBack">返 回</button>
 				<button class="btn confirm" @click="confirmRedirect">继 续</button>

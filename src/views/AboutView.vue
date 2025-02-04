@@ -1,11 +1,135 @@
 <script setup>
+import {useRouter} from "vue-router";
 
+const router = useRouter();
+
+function goBack() {
+	router.push("/")
+}
 </script>
 
 <template>
-<h1>About</h1>
+	<div class="container">
+		<button class="back-btn" @click="goBack">回到首页</button>
+		<span>
+		<div class="big-title">
+			<img src="/src/assets/svg.svg" class="title-img">
+			<h1>Quantum Original2</h1>
+		</div>
+		<h2 class="abstract">颠覆原版游戏体验，<br>由QOSP组件强势驱动。</h2>
+		</span>
+		<div class="content">
+			<p class="sector">开放包容，海纳百川</p>
+			<p class="text">在这里，每个方块都是新的起点。<br>
+				<important>QO不设准入门槛</important>
+				，无论您是小白 / 建筑师 / 红石大佬 / 摸鱼之神 — 加入我们总没错。<br>
+				截止2025年，QuantumOriginal已经累计吸纳了超过
+				<important>200名玩家</important>
+				，其中不乏来自
+				<important>外国</important>
+				的朋友。
+			</p>
+			<p class="sector">随时畅连，稳定游玩</p>
+			<p class="text">Quantum Original拥有
+				<important>稳定的组件和高性能服务器</important>，并且不限制任何生电/跑图。
+				。自从2023年换用
+				<important>Intel Core i9 13900K物理机</important>
+				以来，多个
+				<important>大型工程</important>
+				在本服务器均得以顺畅开展。<br>
+				同时，QO还拥有
+				<important>多条线路</important>
+				，无论您在海外或是偏远地区，我们的中转服务器均能够保证稳定的体验。(Powered by Simpcloud / 简幻云)<br>
+				服务器引入了
+				<important>定期备份，CoreProtect，登录系统</important>
+				等先进机制，杜绝熊孩子。
+			</p>
+			<p class="sector">始于原版，不止原版</p>
+			<p class="text">得益于
+				<important>Purpur</important>
+				服务端的高可拓展性，我们自研了
+				<important>QPlugin插件并且在Github开源</important>
+				。其中包括
+				<important>聚合登录系统，更好的不死图腾堆叠，特殊彩蛋物品，游戏内外聊天同步</important>
+				等优化原版体验的功能，游玩更加轻松便捷，又不失去原版生存的乐趣。
+			</p>
+			<p class="sector">我的意思是，为什么不加入我们呢？</p>
+			<p class="text">现在加入QQ群<important>946085440</important>，开始游玩面向所有人的“骗赞服”。</p>
+		</div>
+	</div>
 </template>
 
 <style scoped>
+.content {
+	text-align: left;
+	margin: auto;
+	max-width: 60%;
+}
 
+.sector {
+	font-size: 1.8rem;
+	font-weight: 1000;
+	text-align: left;
+}
+
+.text {
+	font-weight: 500;
+	font-size: 1.2rem;
+	color: #7c7b7b;
+}
+
+important {
+	color: #d0cece;
+}
+
+.back-btn {
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	padding: 20px 30px;
+	font-size: 1.2rem;
+	background-color: rgb(71, 119, 91);
+	color: white;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	font-weight: bold;
+	border: 1px solid rgb(71, 119, 91);
+}
+
+.back-btn:hover {
+	border: 1px solid rgb(60, 179, 210);
+}
+
+.big-title {
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	h1 {
+		font-weight: 300;
+		font-size: 6rem;
+		font-family: Bahnschrift, serif;
+		margin-left: -80px;
+	}
+}
+
+.title-img {
+	max-width: 400px;
+}
+
+.container {
+	padding: 3rem;
+	flex-direction: column;
+	align-items: center;
+}
+
+.abstract {
+	margin: auto;
+	text-align: center;
+	font-size: 1.5rem;
+	color: #ffffff;
+	line-height: 1.6;
+}
 </style>
