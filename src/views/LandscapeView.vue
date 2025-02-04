@@ -14,7 +14,7 @@ import Landscape from "../components/Landscape.vue";
 
 <style scoped>
 .Categories {
-	background: url('src/assets/background.png');
+	background: url('https://storage.glowingstone.cn/download/background.png');
 	background-size: cover;
 	display: flex;
 	height: 100vh;
