@@ -1,8 +1,10 @@
 <script setup>
 import Landscape from "../components/Landscape.vue";
+import NavigationBar from "../components/NavigationBar.vue";
 </script>
 
 <template>
+	<NavigationBar />
 	<div class="Categories">
 		<Landscape :title="'关于'" :description="'了解QO2'" :link="'/about'"></Landscape>
 		<Landscape :title="'加入我们'" :description="'前往QQ群'" :link="'https://qm.qq.com/q/7rjlo2MSxa'"></Landscape>
@@ -14,15 +16,21 @@ import Landscape from "../components/Landscape.vue";
 
 <style scoped>
 .Categories {
-	background: url('https://storage.glowingstone.cn/download/background.png');
 	background-size: cover;
+	background-position: center;
 	display: flex;
-	height: 100vh;
+	height: calc(100vh - 80px);
 	flex-direction: row;
+	background: url("https://storage.glowingstone.cn/download/background.png");
+	background-size: cover;
+	background-position:center;
 }
+
+
 @media (max-width: 800px) {
 	.Categories {
 		flex-direction: column;
 	}
 }
 </style>
+

@@ -50,7 +50,7 @@ function push() {
 	padding: 0 60px;
 	--h1-font-size: 2em;
 	--p-font-size: 1em;
-	backdrop-filter: brightness(0.3);
+	backdrop-filter: brightness(0.5);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
