@@ -4,6 +4,15 @@ import Landscape from "../components/Landscape.vue";
 import NavigationBar from "../components/NavigationBar.vue";
 const hint = ref("")
 const isVisible = ref(true);
+const currentBgIndex = ref(0);
+const backgrounds = [
+	"https://storage.glowingstone.cn/download/background.png",
+	"https://storage.glowingstone.cn/download/background2.png",
+	"https://storage.glowingstone.cn/download/background3.png",
+	"https://storage.glowingstone.cn/download/background4.png",
+	"https://storage.glowingstone.cn/download/background5.png",
+	"https://storage.glowingstone.cn/download/background6.png",
+];
 onMounted(() => {
 	const viewportWidth = ref(window.innerWidth);
 	const viewportHeight = ref(window.innerHeight);
@@ -17,6 +26,9 @@ onMounted(() => {
 	setTimeout(() => {
 		isVisible.value = false;
 	}, 1500);
+	setInterval(() => {
+		currentBgIndex.value = (currentBgIndex.value + 1) % backgrounds.length;
+	}, 5000);
 });
 </script>
 
@@ -32,7 +44,7 @@ onMounted(() => {
   max-width: 100vw;
   max-height: 100vh;">
 	<NavigationBar />
-	<div class="Categories">
+	<div class="Categories" :style="{ backgroundImage: `url(${backgrounds[currentBgIndex]})` }">
 		<Landscape :title="'关于'" :description="'了解QO2'" :link="'/about'"></Landscape>
 		<Landscape :title="'加入我们'" :description="'前往QQ群'" :link="'https://qm.qq.com/q/7rjlo2MSxa'"></Landscape>
 		<Landscape :title="'指南'" :description="'快速上手或是查找指令'"></Landscape>
@@ -52,6 +64,7 @@ onMounted(() => {
 	background: url("https://storage.glowingstone.cn/download/background.png");
 	background-size: cover;
 	background-position: center;
+	transition: ease-in-out 0.6s;
 }
 
 .mask {
