@@ -32,8 +32,10 @@ function push(link) {
 		margin: 0 40px;
 		padding: 8px 20px;
 	}
+
 }
 .menu:hover {
+	cursor: pointer;
 	background-color: rgb(136, 135, 135, 0.4);
 }
 
