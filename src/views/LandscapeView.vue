@@ -1,9 +1,34 @@
 <script setup>
+import { ref, onMounted } from "vue";
 import Landscape from "../components/Landscape.vue";
 import NavigationBar from "../components/NavigationBar.vue";
+const hint = ref("")
+const isVisible = ref(true);
+onMounted(() => {
+	const viewportWidth = ref(window.innerWidth);
+	const viewportHeight = ref(window.innerHeight);
+	if (viewportHeight.value < 800 || viewportWidth.value < 1250) {
+		hint.value = "您正在使用一个显示大小小于 1250x800的设备，该网页可能在您的设备上显示不正常。"
+	} else if (viewportHeight.value < 800 || viewportWidth.value > 1250) {
+		hint.value = "您正在使用一个显示高度小于800的设备，该网页可能在您的设备上显示不正常。"
+	} else if (viewportHeight.value > 800 || viewportWidth.value < 1250) {
+		hint.value = "您正在使用一个显示宽度小于1250的设备，该网页可能在您的设备上显示不正常。"
+	}
+	setTimeout(() => {
+		isVisible.value = false;
+	}, 1500);
+});
 </script>
 
 <template>
+	<transition name="fade">
+		<div v-if="isVisible" class="mask">
+			<h1>Quantum Original 2</h1>
+			<p>We are optimizing your view experience...</p>
+			<p>{{ hint }}</p>
+		</div>
+	</transition>
+
 	<NavigationBar />
 	<div class="Categories">
 		<Landscape :title="'关于'" :description="'了解QO2'" :link="'/about'"></Landscape>
@@ -23,9 +48,29 @@ import NavigationBar from "../components/NavigationBar.vue";
 	flex-direction: row;
 	background: url("https://storage.glowingstone.cn/download/background.png");
 	background-size: cover;
-	background-position:center;
+	background-position: center;
 }
 
+.mask {
+	h1, p {
+		font-family: "3270";
+	}
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	width: 100vw;
+	background: #5a948d;
+	position: absolute;
+	z-index: 999999;
+	height: 100vh;
+	opacity: 1;
+	transition: opacity 1s ease-out;
+}
+
+.mask.fade-leave-active {
+	opacity: 0;
+}
 
 @media (max-width: 800px) {
 	.Categories {
@@ -33,4 +78,3 @@ import NavigationBar from "../components/NavigationBar.vue";
 	}
 }
 </style>
-

@@ -15,6 +15,10 @@
   transition: all 0.3s ease-in-out;
 }
 @font-face {
+  font-family: "3270";
+  src: url("/src/assets/3270-Regular.ttf")
+}
+@font-face {
   font-family: "Inter";
   src: url("/src/assets/Inter.ttf");
 }
