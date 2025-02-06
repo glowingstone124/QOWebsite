@@ -43,6 +43,7 @@ const confirmRedirect = () => {
 	padding: 2rem;
 	min-height: 100vh;
 	box-sizing: border-box;
+	overflow-y: scroll;
 }
 
 .content {

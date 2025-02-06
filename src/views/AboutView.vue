@@ -159,7 +159,7 @@ important {
 
 .container {
 	height: 100%;
-	overflow: hidden;
+	overflow-y: scroll;
 	padding: 3rem;
 	flex-direction: column;
 	align-items: center;

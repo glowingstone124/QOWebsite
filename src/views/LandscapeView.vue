@@ -28,7 +28,9 @@ onMounted(() => {
 			<p>{{ hint }}</p>
 		</div>
 	</transition>
-
+	<div style="  overflow: hidden;
+  max-width: 100vw;
+  max-height: 100vh;">
 	<NavigationBar />
 	<div class="Categories">
 		<Landscape :title="'关于'" :description="'了解QO2'" :link="'/about'"></Landscape>
@@ -36,6 +38,7 @@ onMounted(() => {
 		<Landscape :title="'指南'" :description="'快速上手或是查找指令'"></Landscape>
 		<Landscape :title="'捐赠'" :description="'捐赠我们来支持Quantum Original2的开发'" :link="'https://afdian.com/a/glowingstone124'"></Landscape>
 		<Landscape :title="'前往App'" :description="'使用QCommunity来注册账号，了解服务器详情'" :link="'https://app.qoriginal.vip'"></Landscape>
+	</div>
 	</div>
 </template>
 
