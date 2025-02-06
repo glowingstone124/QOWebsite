@@ -1,9 +1,9 @@
 <script setup>
 import {useRouter} from "vue-router";
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
 
 const router = useRouter();
-
+const hasAnimated = ref(true)
 function goBack() {
 	router.push("/")
 }
@@ -11,7 +11,7 @@ function goBack() {
 
 <template>
 	<div class="container">
-		<div class="container-front">
+		<div class="container-front" :class="{ animate: hasAnimated }">
 			<button class="back-btn" @click="goBack"><img src="@/assets/arrow_back.svg"></button>
 			<span>
 		<div class="big-title">
@@ -132,6 +132,7 @@ important {
 	transition: background-color 0.3s;
 	font-weight: bold;
 	border: 1px solid rgb(71, 119, 91);
+	z-index: 999;
 }
 
 .back-btn:hover {
@@ -179,5 +180,49 @@ important {
 	font-size: 1.5rem;
 	color: #ffffff;
 	line-height: 1.6;
+}
+.container-front {
+	opacity: 0;
+	transform: translateY(20px);
+	transition: all 1s ease-out;
+}
+
+.container-front.animate {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.container-front.animate .big-title,
+.container-front.animate .abstract,
+.container-front.animate .links,
+.container-front.animate .content {
+	animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.big-title {
+	animation-delay: 0.2s;
+}
+
+.abstract {
+	animation-delay: 0.4s;
+}
+
+.links {
+	animation-delay: 0.6s;
+}
+
+.content {
+	animation-delay: 0.8s;
 }
 </style>
