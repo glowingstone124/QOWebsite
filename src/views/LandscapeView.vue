@@ -3,7 +3,7 @@ import { ref, onMounted } from "vue";
 import Landscape from "../components/Landscape.vue";
 import NavigationBar from "../components/NavigationBar.vue";
 const hint = ref("")
-const isVisible = ref(true);
+const isVisible = ref(!sessionStorage.getItem("loaded"));
 const currentBgIndex = ref(0);
 const backgrounds = [
 	"https://storage.glowingstone.cn/download/background.png",
@@ -25,6 +25,7 @@ onMounted(() => {
 	}
 	setTimeout(() => {
 		isVisible.value = false;
+		sessionStorage.setItem("loaded", true)
 	}, 1500);
 	setInterval(() => {
 		currentBgIndex.value = (currentBgIndex.value + 1) % backgrounds.length;
