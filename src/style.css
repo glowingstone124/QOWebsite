@@ -11,5 +11,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 * {
+  font-family: "Inter", "NotoSans";
   transition: all 0.3s ease-in-out;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/src/assets/Inter.ttf");
+}
+@font-face {
+  font-family: "Bahnschrift";
+  src: url("/src/assets/bahnschrift.ttf");
+}
+@font-face {
+  font-family: "NotoSans";
+  src: url("/src/assets/NotoSans.ttf");
 }

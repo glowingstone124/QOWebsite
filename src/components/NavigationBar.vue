@@ -6,7 +6,7 @@
 	<div class="nav">
 		<div class="logo">
 			<img src="@/assets/svg.svg">
-			<p>Quantum Original 2</p>
+			<p>Quantum Original 2 | 官方网站</p>
 		</div>
 	</div>
 </template>
@@ -14,7 +14,7 @@
 <style scoped>
 .nav {
 	height: 60px;
-	background-color: #5ea5c280;
+	background-color: rgba(102, 116, 126, 0.5);
 	backdrop-filter: blur(30px);
 	padding: 10px;
 }

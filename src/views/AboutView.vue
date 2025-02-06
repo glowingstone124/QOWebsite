@@ -16,7 +16,7 @@ function goBack() {
 			<span>
 		<div class="big-title">
 			<img src="/src/assets/svg.svg" class="title-img">
-			<h1>Quantum Original2</h1>
+			<h1>Quantum Original 2</h1>
 		</div>
 		<h2 class="abstract">颠覆原版游戏体验，<br>更由QOSP组件强势驱动。</h2>
 		<div class="links">
@@ -145,7 +145,7 @@ important {
 	justify-content: center;
 
 	h1 {
-		font-weight: 300;
+		font-weight: 600;
 		font-size: 6rem;
 		font-family: Bahnschrift, serif;
 		margin-left: -80px;
