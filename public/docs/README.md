@@ -1,5 +1,7 @@
 # Quantum Original Wiki
 
-> 欢迎来到Quantum Original Wiki!
+这个wiki致力于提供帮助您游玩Quantum Original 2的有用信息。
 
-这个wiki致力于为您提供服务器内的一些有用信息，同时也欢迎您的贡献。
+关于如何贡献，请查看 技术性内容 > Wiki贡献指南。
+
+加入QuantumOriginal官方讨论群： 946085440

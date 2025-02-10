@@ -18,7 +18,9 @@ onMounted(() => {
 	script.src = "//cdn.jsdelivr.net/npm/docsify@4";
 	script.onload = () => {
 		window.$docsify = {
-			loadNavbar: true
+			loadNavbar: true,
+			loadSidebar: true,
+			routerMode: "hash"
 		}
 	};
 	document.body.appendChild(script);
