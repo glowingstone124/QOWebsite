@@ -20,10 +20,13 @@
 
 <script setup>
 import { useRoute, useRouter } from 'vue-router';
+import {onMounted} from "vue";
 
 const route = useRoute();
 const router = useRouter();
 const url = route.query.url;
+
+const whitelist = ["https://app.qoriginal.vip","https://docs.qoriginal.vip"];
 
 const goBack = () => {
 	router.go(-1);
@@ -34,6 +37,12 @@ const confirmRedirect = () => {
 		window.location.href = url
 	}
 };
+
+onMounted(() => {
+	if (url && whitelist.indexOf(url) !== -1) {
+		window.location.href = url
+	}
+})
 </script>
 
 <style scoped>

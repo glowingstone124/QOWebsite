@@ -11,6 +11,7 @@ function push(link) {
 		});
 	}
 }
+
 </script>
 
 <template>
