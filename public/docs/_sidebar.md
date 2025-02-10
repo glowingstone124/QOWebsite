@@ -3,3 +3,5 @@
   - [Wiki贡献指南](/CONTRIBUTION.md)
 - [指令大全](/commands.md)
 - [如何连接到服务器](/connectingToServer.md)
+- [入服须知](/things_to_know.md)
+- [服务器建筑一览](/server_buildings.md)
