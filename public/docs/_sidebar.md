@@ -5,3 +5,4 @@
 - [如何连接到服务器](/connectingToServer.md)
 - [入服须知](/things_to_know.md)
 - [服务器建筑一览](/server_buildings.md)
+- [服务器对原版特性的部分更改](/changes.md)
