@@ -11,7 +11,7 @@ import {onMounted} from "vue";
 onMounted(() => {
 	const link = document.createElement("link");
 	link.rel = "stylesheet";
-	link.href = "//cdn.jsdelivr.net/npm/docsify/themes/dark.css"
+	link.href = "/document_style.css"
 	document.head.appendChild(link);
 
 	const script = document.createElement("script");
