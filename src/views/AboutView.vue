@@ -41,7 +41,9 @@ function goBack() {
 					<important>稳定的组件和高性能服务器</important>
 					，并且不限制任何生电/跑图。
 					。自从2023年换用
-					<important>Intel Core i9 13900K物理机</important>
+					<important>Intel Core i9 13900K物理机</important>，
+					2025年换用
+					<important>AMD Ryzen 9900X物理机</important>
 					以来，多个
 					<important>大型工程</important>
 					在本服务器均得以顺畅开展。<br>
@@ -89,22 +91,31 @@ function goBack() {
 	align-content: center;
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
 	background: #a29e9e40;
 	border-radius: 30px;
-	max-width: 30%;
+	width: 90%;
+	max-width: 800px;
 	padding: 10px;
-	a{
+
+	img {
+		width: 100%;
+	}
+
+	a {
 		text-decoration: none;
 		align-content: center;
 		justify-content: center;
 		display: flex;
 		font-size: 1.2rem;
 		color: #fff;
-		margin: 0 10px;
+		margin: 5px 10px;
 		padding: 10px;
 		border-radius: 18px;
+		white-space: nowrap;
 	}
-	a:hover{
+
+	a:hover {
 		background: rgba(222, 219, 219, 0.38);
 	}
 }
@@ -144,14 +155,21 @@ important {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-wrap: wrap;
 
 	h1 {
 		font-weight: 600;
-		font-size: 6rem;
+		font-size: clamp(1.8rem, 5vw, 3rem);
 		font-family: Bahnschrift, serif;
 		margin-left: -80px;
+
+		@media (max-width: 600px) {
+			margin-left: 0;
+			text-align: center;
+		}
 	}
 }
+
 
 .title-img {
 	max-width: 400px;
@@ -224,5 +242,11 @@ important {
 
 .content {
 	animation-delay: 0.8s;
+}
+@media (max-width: 600px) {
+	.links {
+		flex-direction: column;
+		align-items: center;
+	}
 }
 </style>
