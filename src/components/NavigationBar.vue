@@ -17,7 +17,7 @@ function push(link) {
 <template>
 	<div class="nav">
 		<div class="logo">
-			<img src="@/assets/svg.svg">
+			<img src="/qo_transparent_icon.png">
 			<p>Quantum Original 2 | 官方网站</p>
 		</div>
 		<div class="menu" @click="push('https://app.qoriginal.vip')"><h2>去App看看！</h2></div>
@@ -33,7 +33,6 @@ function push(link) {
 		margin: 0 40px;
 		padding: 8px 20px;
 	}
-
 }
 .menu:hover {
 	cursor: pointer;
@@ -47,6 +46,7 @@ function push(link) {
 	height: 60px;
 	backdrop-filter: blur(30px);
 	border-radius: 10px;
+	background-color: rgba(21, 64, 87, 0.3);
 	margin: 8px;
 }
 
