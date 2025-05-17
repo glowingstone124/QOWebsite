@@ -263,7 +263,7 @@ important {
 
 .front-container {
 	backdrop-filter: blur(10px);
-	background: rgba(158, 162, 162, 0.1);
+	background: rgba(158, 162, 162, 0.2);
 	padding: 20px;
 	margin-top: 30px;
 	border-radius: 16px;
