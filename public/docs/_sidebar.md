@@ -7,3 +7,4 @@
 - [服务器建筑一览](/server_buildings.md)
 - [服务器对原版特性的部分更改](/changes.md)
 - [地铁线路图](/metro.md)
+- [关于在所有QuantumOriginal所使用图片的合规性声明](/DisclaimerofComplianceforImagesUsed.md)
