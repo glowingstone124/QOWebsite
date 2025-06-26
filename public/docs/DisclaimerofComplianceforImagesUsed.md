@@ -1,0 +1,1 @@
+# 关于在所有QuantumOriginal所使用图片的合规性声明
