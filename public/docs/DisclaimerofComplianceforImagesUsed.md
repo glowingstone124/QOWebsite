@@ -36,12 +36,18 @@ Holographic Lab 保留自主制作素材的全部知识产权与最终解释权�
 
 QCommunity, QO官网的所有图标: Google Fonts
 
-在QCommunity中显示的所有头像：用户自主上传并使用
+在QCommunity中显示的所有头像：
+
+玩家皮肤截取的：由玩家自主上传，使用并管理，Quantum Original不储存或干涉。
+
+东方像素头像：已经获得[原作者](https://www.pixiv.net/users/37509663)授权。
 
 QCommunity自定义的玩家卡：
 
 https://bucket.glowingstone.cn/cards/city_maincity_01.png
 
 https://bucket.glowingstone.cn/cards/city_maincity_02.png
+
+
 
 由Holographic制作

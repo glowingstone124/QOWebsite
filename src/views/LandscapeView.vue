@@ -46,10 +46,12 @@ onMounted(() => {
 			<p>{{ hint }}</p>
 		</div>
 	</transition>
-	<video class="bg-video" autoplay muted loop playsinline>
+	<!--video class="bg-video" autoplay muted loop playsinline>
 		<source src="https://bucket.glowingstone.cn/output_compressed.mp4" type="video/mp4" />
 		您的浏览器不支持 video 标签。
-	</video>
+	<video/>
+	-->
+	<img src="https://bucket.glowingstone.cn/hotzone.png" class="bg-video">
 	<div class="main-content">
 		<NavigationBar />
 		<div class="Categories">

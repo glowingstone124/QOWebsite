@@ -65,12 +65,15 @@ function push() {
 	}
 }
 .landscape:hover {
-	cursor: pointer;
+	/*cursor: pointer;
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 	h1 {
 		font-size: calc(var(--h1-font-size) * 1.3);
 	}
 
 	backdrop-filter: brightness(0.9) blur(30px);
+	 */
+	background-color: #602514;
+	backdrop-filter: blur(10px);
 }
 </style>

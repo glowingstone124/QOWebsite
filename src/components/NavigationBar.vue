@@ -65,7 +65,7 @@ function push(link) {
 }
 
 .nav:hover {
-	background-color: rgba(89, 161, 222, 0.8);
+	background-color: rgba(194, 82, 18, 0.8);
 }
 
 .logo img {
