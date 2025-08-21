@@ -8,16 +8,23 @@ import AboutView from "./views/AboutView.vue"
 import DocumentView from "./views/DocumentView.vue"
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import NotFoundView from "@/views/NotFoundView.vue";
 
 library.add(faArrowLeft)
+library.add(faClock)
 
 const routes = [
     { path: '/', component: LandscapeView },
     { path: '/redirect', component: Redirect },
     { path: '/about', component: AboutView },
-    { path: '/docs', component: DocumentView }
+    { path: '/docs', component: DocumentView },
+    {
+        path: '/:catchAll(.*)',
+        name: 'not-found',
+        component: NotFoundView,
+    }
 ]
 
 const router = createRouter({

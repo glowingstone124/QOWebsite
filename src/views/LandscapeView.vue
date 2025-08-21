@@ -1,121 +1,185 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import Landscape from "../components/Landscape.vue";
+import {ref, onMounted} from "vue";
+import LandScapeNewsComponents from "../components/LandscapeNewsComponents.vue";
 import NavigationBar from "../components/NavigationBar.vue";
-const hint = ref("")
+
 const isVisible = ref(!sessionStorage.getItem("loaded"));
 const currentBgIndex = ref(0);
-const backgrounds = [
-	"https://storage.glowingstone.cn/download/background.png",
-	"https://storage.glowingstone.cn/download/background2.png",
-	"https://storage.glowingstone.cn/download/background3.png",
-	"https://storage.glowingstone.cn/download/background4.png",
-	"https://storage.glowingstone.cn/download/background5.png",
-	"https://storage.glowingstone.cn/download/background6.png",
-];
-onMounted(() => {
-	const video = document.querySelector('.bg-video');
-	if (video) {
-		video.playbackRate = 0.5;
-	}
-
-	const viewportWidth = ref(window.innerWidth);
-	const viewportHeight = ref(window.innerHeight);
-	if (viewportHeight.value < 800 || viewportWidth.value < 1250) {
-		hint.value = "您正在使用一个显示大小小于 1250x800的设备，该网页可能在您的设备上显示不正常。"
-	} else if (viewportHeight.value < 800 || viewportWidth.value > 1250) {
-		hint.value = "您正在使用一个显示高度小于800的设备，该网页可能在您的设备上显示不正常。"
-	} else if (viewportHeight.value > 800 || viewportWidth.value < 1250) {
-		hint.value = "您正在使用一个显示宽度小于1250的设备，该网页可能在您的设备上显示不正常。"
-	}
-	setTimeout(() => {
-		isVisible.value = false;
-		sessionStorage.setItem("loaded", true)
-	}, 1500);
-	setInterval(() => {
-		currentBgIndex.value = (currentBgIndex.value + 1) % backgrounds.length;
-	}, 5000);
-});
 </script>
 
 <template>
-	<transition name="fade">
-		<div v-if="isVisible" class="mask">
-			<h1>Quantum Original 2</h1>
-			<p>We are optimizing your view experience...</p>
-			<p>{{ hint }}</p>
-		</div>
-	</transition>
 	<!--video class="bg-video" autoplay muted loop playsinline>
 		<source src="https://bucket.glowingstone.cn/output_compressed.mp4" type="video/mp4" />
 		您的浏览器不支持 video 标签。
 	<video/>
 	-->
-	<img src="https://bucket.glowingstone.cn/hotzone.png" class="bg-video">
+	<!-- img src="https://bucket.glowingstone.cn/comp_patchouli.jpg" class="bg-video" -->
 	<div class="main-content">
-		<NavigationBar />
-		<div class="Categories">
-			<Landscape :title="'关于'" :description="'了解QO2'" :link="'/about'"></Landscape>
-			<Landscape :title="'加入我们'" :description="'前往QQ群'" :link="'https://qm.qq.com/q/7rjlo2MSxa'"></Landscape>
-			<Landscape :title="'指南'" :description="'快速上手或是查找指令'" :link="'/docs'"></Landscape>
-			<Landscape :title="'捐赠'" :description="'捐赠我们来支持Quantum Original2的开发'" :link="'https://afdian.com/a/glowingstone124'"></Landscape>
-			<Landscape :title="'前往App'" :description="'使用QCommunity来注册账号，了解服务器详情'" :link="'https://app.qoriginal.vip'"></Landscape>
+		<NavigationBar/>
+		<div class="favorite">
+			<div class="overlay"></div>
+			<div class="content">
+				<div class="image">
+					<img src="https://bucket.glowingstone.cn/comp_patchouli.jpg" alt="">
+				</div>
+				<div class="desc">
+					<h1>Pixel Fantasia-像素幻想</h1>
+					<p>现已作为卡面上线Quantum Original APP。</p>
+				</div>
+			</div>
+		</div>
+		<div class="categories">
+			<div class="categories_inner">
+				<LandScapeNewsComponents
+					title="热区协议-情报1"
+					image="https://bucket.glowingstone.cn/coverhz1.png"
+					description="ERROR_CONTENT_NOT_AVAILABLE"
+					time="2025-08-24"
+					link="/docs#/hotzone_1.md"
+				/>
+				<LandScapeNewsComponents
+					title="Quantum Original官网现已全面焕新。"
+					image="https://bucket.glowingstone.cn/visualupdate.png"
+					description="我们重构了整个官网落地页的视觉体验，并且兼顾了响应式效果。"
+					time="2025-08-24"
+					link="/docs#/visual_effects.md"
+				/>
+			</div>
+			<div class="status"></div>
 		</div>
 	</div>
 </template>
 
 
 <style scoped>
-.bg-video {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	object-fit: cover;
-	z-index: -1;
+.categories {
+	display: flex;
 }
 
+.categories_inner {
+	flex: 7;
+	align-content: center;
+	margin: 2rem;
+}
+
+.status {
+	flex: 3;
+	align-content: center;
+}
+
+.favorite {
+	background: url("https://bucket.glowingstone.cn/comp_patchouli.jpg");
+	background-size: cover;
+	display: flex;
+	height: 100vh;
+}
+
+.favorite .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	backdrop-filter: blur(8px) brightness(60%);
+	background-color: rgba(0, 0, 0, 0.4);
+	pointer-events: none;
+	z-index: 1;
+}
+
+.favorite .content {
+	display: flex;
+	position: relative;
+	z-index: 2;
+}
+
+.desc {
+	flex: 4;
+	align-content: center;
+
+	h1 {
+		font-size: 3rem;
+	}
+
+	p {
+		font-size: 1.3rem;
+	}
+}
+
+.image {
+	align-content: center;
+	flex: 6;
+	padding: 4rem;
+
+	img {
+		border-radius: 15px;
+		width: 100%;
+		height: auto;
+		object-fit: contain;
+	}
+
+	img:hover {
+		-webkit-box-shadow: 0px 0px 37px 0px rgba(255, 255, 255, 0.9);
+		-moz-box-shadow: 0px 0px 37px 0px rgba(255, 255, 255, 0.9);
+		box-shadow: 0px 0px 37px 0px rgba(255, 255, 255, 0.9);
+	}
+}
+
+
 .main-content {
-	overflow: hidden;
-	max-width: 100vw;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	min-width: 100vw;
 	max-height: 100vh;
+	min-height: 100vh;
 	position: relative;
 	z-index: 1;
 }
 
-.Categories {
-	display: flex;
-	height: calc(100vh - 80px);
-	flex-direction: row;
-	transition: ease-in-out 0.6s;
-}
-
-.mask {
-	h1, p {
-		font-family: "3270";
-	}
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-	width: 100vw;
-	background: #5a948d;
-	position: absolute;
-	z-index: 999999;
-	height: 100vh;
-	opacity: 1;
-	transition: opacity 1s ease-out;
-}
-
-.mask.fade-leave-active {
-	opacity: 0;
-}
-
-@media (max-width: 800px) {
-	.Categories {
+@media (max-width: 768px) {
+	.content {
 		flex-direction: column;
+		align-items: center;
+		padding: 1rem;
+
+		.image {
+			padding: 0;
+			margin: 1rem 0;
+			max-height: 40vh;
+			flex: 8;
+			width: 100%;
+		}
+
+		.desc {
+			text-align: center;
+			padding: 0 1rem;
+			flex: 2;
+
+			h1 {
+				font-size: 1.8rem;
+				margin-bottom: 0.5rem;
+			}
+
+			p {
+				font-size: 1rem;
+				line-height: 1.4;
+			}
+		}
 	}
+
+	.favorite {
+		display: grid;
+		place-items: center;
+		align-items: center;
+		min-height: 100vh;
+		height: auto;
+		background-position: center;
+		background-size: cover;
+	}
+
+	.image img {
+		box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+	}
+
 }
 
 </style>
