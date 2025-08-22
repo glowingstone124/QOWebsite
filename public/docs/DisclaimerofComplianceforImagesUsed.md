@@ -44,10 +44,26 @@ QCommunity, QO官网的所有图标: Google Fonts
 
 QCommunity自定义的玩家卡：
 
+### City Collection
+
 https://bucket.glowingstone.cn/cards/city_maincity_01.png
 
 https://bucket.glowingstone.cn/cards/city_maincity_02.png
 
+https://bucket.glowingstone.cn/cards/city_maincity_03.png
 
+https://bucket.glowingstone.cn/cards/city_maincity_04.png
+
+https://bucket.glowingstone.cn/cards/city_maincity_05.png
+
+https://bucket.glowingstone.cn/cards/city_maincity_06.png
+
+https://bucket.glowingstone.cn/cards/city_maincity_07.png
+
+https://bucket.glowingstone.cn/cards/city_maincity_08.png
+
+### Pixel Fantasia
+
+由[苗库里](https://www.pixiv.net/users/37509663)制作并独家授权给Holographic Lab。
 
 由Holographic制作
