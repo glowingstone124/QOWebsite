@@ -20,7 +20,7 @@ function click() {
 
 <template>
 	<div class="news" @click="click">
-		<div class="img_container">
+		<div class="img_container" v-if="image != 'none'">
 			<img :src=image alt="">
 		</div>
 		<div class="news_desc">

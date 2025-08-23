@@ -30,6 +30,7 @@ const currentBgIndex = ref(0);
 		</div>
 		<div class="categories">
 			<div class="categories_inner">
+				<h1>最新新闻</h1>
 				<LandScapeNewsComponents
 					title="热区协议-情报1"
 					image="https://bucket.glowingstone.cn/coverhz1.png"
@@ -44,6 +45,14 @@ const currentBgIndex = ref(0);
 					time="2025-08-24"
 					link="/docs#/visual_effects.md"
 				/>
+				<h1>社区运营</h1>
+				<LandScapeNewsComponents
+					title="玩家处理公告"
+					image="none"
+					description="关于hehenoob的最终处理报告"
+					time="2025-08-25"
+					link="/docs#/judgement_for_hehenoob.md"
+				/>
 			</div>
 			<div class="status"></div>
 		</div>
@@ -57,6 +66,10 @@ const currentBgIndex = ref(0);
 }
 
 .categories_inner {
+	h1{
+		font-size: 4rem;
+		font-weight: 400;
+	}
 	flex: 7;
 	align-content: center;
 	margin: 2rem;
