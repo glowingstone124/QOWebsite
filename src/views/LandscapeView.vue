@@ -51,7 +51,7 @@ const currentBgIndex = ref(0);
 					image="none"
 					description="关于hehenoob的最终处理报告"
 					time="2025-08-25"
-					link="/docs#/judgement_for_hehenoob.md"
+					link="/docs#/judgement_hehenoob.md"
 				/>
 			</div>
 			<div class="status"></div>
