@@ -38,7 +38,7 @@ const currentBgIndex = ref(0);
 					link="/docs#/hotzone_1.md"
 				/>
 				<LandScapeNewsComponents
-					title="Quantum Original官网现已全面焕新。"
+					title="秋季开发更新"
 					image="https://bucket.glowingstone.cn/visualupdate.png"
 					description="我们重构了整个官网落地页的视觉体验，并且兼顾了响应式效果。"
 					time="2025-08-24"
