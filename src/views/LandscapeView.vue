@@ -32,6 +32,13 @@ const currentBgIndex = ref(0);
 			<div class="categories_inner">
 				<h1>最新新闻</h1>
 				<LandScapeNewsComponents
+					title="11月开发更新"
+					image="https://bucket.glowingstone.cn/cmp_nov-fs8.png"
+					description="版本更新详情"
+					time="2025-10-24"
+					link="/docs#/2025nov.md"
+				/>
+				<LandScapeNewsComponents
 					title="热区协议-情报1"
 					image="https://bucket.glowingstone.cn/coverhz1.png"
 					description="ERROR_CONTENT_NOT_AVAILABLE"
