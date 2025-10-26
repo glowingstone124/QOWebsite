@@ -1,11 +1,35 @@
 <script setup>
-import {ref, onMounted} from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import LandScapeNewsComponents from "../components/LandscapeNewsComponents.vue";
 import NavigationBar from "../components/NavigationBar.vue";
 
 const isVisible = ref(!sessionStorage.getItem("loaded"));
 const currentBgIndex = ref(0);
+const currentHref = ref("");
+
+const ImgMappings = [
+	"https://bucket.glowingstone.cn/artworks/pixel_patchouli.png",
+	"https://bucket.glowingstone.cn/artworks/pf_orin.png",
+	"https://bucket.glowingstone.cn/artworks/pf_koishi.jpg",
+	"https://bucket.glowingstone.cn/artworks/pf_reimu_and_marisa.png"
+];
+
+let intervalId = null;
+
+onMounted(() => {
+	currentHref.value = ImgMappings[currentBgIndex.value];
+
+	intervalId = setInterval(() => {
+		currentBgIndex.value = (currentBgIndex.value + 1) % ImgMappings.length;
+		currentHref.value = ImgMappings[currentBgIndex.value];
+	}, 7000);
+});
+
+onUnmounted(() => {
+	clearInterval(intervalId);
+});
 </script>
+
 
 <template>
 	<!--video class="bg-video" autoplay muted loop playsinline>
@@ -16,11 +40,11 @@ const currentBgIndex = ref(0);
 	<!-- img src="https://bucket.glowingstone.cn/comp_patchouli.jpg" class="bg-video" -->
 	<div class="main-content">
 		<NavigationBar/>
-		<div class="favorite">
-			<div class="overlay"></div>
+		<div class="favorite" :style="`background-image: url(${currentHref});`">
+		<div class="overlay"></div>
 			<div class="content">
 				<div class="image">
-					<img src="https://bucket.glowingstone.cn/comp_patchouli.jpg" alt="">
+					<img :src="currentHref" alt="">
 				</div>
 				<div class="desc">
 					<h1>Pixel Fantasia-像素幻想</h1>
@@ -79,7 +103,7 @@ const currentBgIndex = ref(0);
 	}
 	flex: 7;
 	align-content: center;
-	margin: 2rem;
+	margin: 3rem 5rem;
 }
 
 .status {
@@ -88,7 +112,6 @@ const currentBgIndex = ref(0);
 }
 
 .favorite {
-	background: url("https://bucket.glowingstone.cn/comp_patchouli.jpg");
 	background-size: cover;
 	display: flex;
 	height: 100vh;

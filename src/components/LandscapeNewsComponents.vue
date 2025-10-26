@@ -53,9 +53,11 @@ function click() {
 }
 
 .news {
-	margin: 3rem 1rem;
+	margin: 3rem 5rem;
 	display: flex;
 	flex-direction: row;
+	padding-bottom: 4rem;
+	border-bottom: 1px solid white;
 }
 
 .news img {

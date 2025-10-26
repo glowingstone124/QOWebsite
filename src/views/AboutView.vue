@@ -7,7 +7,7 @@
 }
 
 body {
-	background-color: #0c1b25;
+	background-color: rgba(19, 18, 18, 0.12);
 	color: #e1e8ea;
 	overflow-x: hidden;
 }
@@ -18,25 +18,13 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background: linear-gradient(rgba(12, 27, 37, 0.85), rgba(12, 27, 37, 0.95)),
+	background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(8, 9, 9, 0.95)),
 	url("https://bucket.glowingstone.cn/huge_2024-11-24_15.17.13.png");
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
 	position: relative;
 	overflow: hidden;
-}
-
-.container::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: radial-gradient(circle at 50% 50%, rgba(45, 192, 206, 0.1) 0%, transparent 70%);
-	pointer-events: none;
-	z-index: 0;
 }
 
 .container-front {
@@ -52,7 +40,7 @@ body {
 	left: 20px;
 	padding: 12px 20px;
 	font-size: 1rem;
-	background: rgba(45, 192, 206, 0.8);
+	background: rgba(36, 37, 37, 0.8);
 	color: white;
 	border-radius: 50px;
 	cursor: pointer;
@@ -67,7 +55,7 @@ body {
 }
 
 .back-btn:hover {
-	background: rgba(60, 210, 230, 0.9);
+	background: rgba(53, 120, 129, 0.9);
 	transform: translateY(-2px);
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
@@ -78,9 +66,9 @@ body {
 }
 
 .front-container {
-	background: rgba(25, 40, 55, 0.85);
+	background: rgba(9, 10, 14, 0.85);
 	backdrop-filter: blur(12px);
-	border-radius: 16px;
+	border-radius: 4px;
 	padding: 30px;
 	margin-top: 30px;
 	border: 1px solid rgba(45, 192, 206, 0.3);
@@ -106,7 +94,7 @@ body {
 .big-title h1 {
 	font-weight: 700;
 	font-size: clamp(2rem, 5vw, 3.5rem);
-	background: linear-gradient(135deg, #2dc0ce, #4deeea);
+	background: linear-gradient(135deg, #2d4244, #17e0d1);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
@@ -188,17 +176,6 @@ body {
 	position: relative;
 	padding-bottom: 10px;
 	color: #4deeea;
-}
-
-.sector::after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 80px;
-	height: 3px;
-	background: linear-gradient(90deg, #2dc0ce, transparent);
-	border-radius: 3px;
 }
 
 .text {
@@ -430,13 +407,16 @@ important::after {
 				<h2 class="abstract">颠覆原版游戏体验，<br>更由QOSP组件强势驱动。</h2>
 				<div class="links">
 					<a href="https://github.com/glowingstone124" class="animate-in delay-2">
-						<font-awesome-icon icon="fa-github" /> Github
+						<img src="/github-mark-white.svg">Github
 					</a>
 					<a href="https://qm.qq.com/q/7rjlo2MSxa" class="animate-in delay-3">
 						<font-awesome-icon icon="fa-qq" /> QQ群
 					</a>
 					<a href="mailto:hanseroffical@outlook.com" class="animate-in delay-4">
 						<font-awesome-icon icon="fa-envelope"/> 电子邮件
+					</a>
+					<a href="https://x.com/QuantumOriginal" class="animate-in delay-4">
+						<img src="/logo-black.png">Twitter
 					</a>
 				</div>
 			</div>

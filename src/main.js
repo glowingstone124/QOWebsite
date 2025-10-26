@@ -11,8 +11,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faArrowLeft, faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import NotFoundView from "@/views/NotFoundView.vue";
-
-library.add(faArrowLeft)
+import { faGithub, faQq } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+library.add(faArrowLeft, faGithub, faQq, faEnvelope, faArrowLeft)
 library.add(faClock)
 
 const routes = [
