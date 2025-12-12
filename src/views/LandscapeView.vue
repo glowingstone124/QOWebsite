@@ -56,6 +56,13 @@ onUnmounted(() => {
 			<div class="categories_inner">
 				<h1>最新新闻</h1>
 				<LandScapeNewsComponents
+					title="12月开发更新"
+					image="https://bucket.glowingstone.cn/2025dec.png"
+					description="版本更新详情"
+					time="2025-12-25"
+					link="/docs#/2025dec.md"
+				/>
+				<LandScapeNewsComponents
 					title="11月开发更新"
 					image="https://bucket.glowingstone.cn/cmp_nov-fs8.png"
 					description="版本更新详情"
