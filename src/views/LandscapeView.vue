@@ -87,7 +87,6 @@ onUnmounted(() => {
 					link="/docs#/judgement_hehenoob.md"
 				/>
 			</div>
-			<div class="status"></div>
 		</div>
 	</div>
 </template>

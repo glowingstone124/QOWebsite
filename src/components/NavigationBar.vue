@@ -17,8 +17,9 @@ function push(link) {
 }
 
 
-const opened = ref(true);
+const opened = ref(false);
 const currentMenu = ref(1);
+
 function toggle() {
 	opened.value = !opened.value;
 }
@@ -43,34 +44,36 @@ function activate(page) {
 			</div>
 		</div>
 	</div>
-	<div class="fullscreen-menu-father" :class="{opened}">
-		<div class="fullscreen-left"></div>
-		<div class="fullscreen-menu">
-			<div class="category">
-				<div class="category-item" @click=activate(1) :class="{ active: currentMenu === 1 }">
-					<p>常用功能</p>
+	<transition name="menu-fade">
+		<div class="fullscreen-menu-father" :class="{opened}" v-show="opened">
+			<div class="fullscreen-left"></div>
+			<div class="fullscreen-menu">
+				<div class="category">
+					<div class="category-item" @click=activate(1) :class="{ active: currentMenu === 1 }">
+						<p>常用功能</p>
+					</div>
+					<div class="category-item" @click=activate(2) :class="{ active: currentMenu === 2 }">
+						<p>指向子页</p>
+					</div>
+					<div class="category-item" @click=activate(3) :class="{ active: currentMenu === 3 }">
+						<p>更多</p>
+					</div>
 				</div>
-				<div class="category-item" @click=activate(2) :class="{ active: currentMenu === 2 }">
-					<p>指向子页</p>
+				<div class="menu-section" v-if="currentMenu === 1">
+					<NavItem :title="'加入我们'" :link="'https://qm.qq.com/q/7rjlo2MSxa'"></NavItem>
+					<NavItem :title="'指南'" :link="'/docs'"></NavItem>
 				</div>
-				<div class="category-item" @click=activate(3) :class="{ active: currentMenu === 3 }">
-					<p>更多</p>
+				<div class="menu-section" v-if="currentMenu === 2">
+					<NavItem :title="'QCommunity'" :link="'https://app.qoriginal.vip'"></NavItem>
+					<NavItem :title="'Web Map'" :link="'https://map.qoriginal.vip'"></NavItem>
+					<NavItem :title="'捐赠'" :link="'https://afdian.com/a/glowingstone124'"></NavItem>
 				</div>
-			</div>
-			<div class="menu-section" v-if="currentMenu === 1">
-				<NavItem :title="'加入我们'" :link="'https://qm.qq.com/q/7rjlo2MSxa'"></NavItem>
-				<NavItem :title="'指南'" :link="'/docs'"></NavItem>
-			</div>
-			<div class="menu-section" v-if="currentMenu === 2">
-				<NavItem :title="'QCommunity'" :link="'https://app.qoriginal.vip'"></NavItem>
-				<NavItem :title="'Web Map'" :link="'https://map.qoriginal.vip'"></NavItem>
-				<NavItem :title="'捐赠'" :link="'https://afdian.com/a/glowingstone124'"></NavItem>
-			</div>
-			<div class="menu-section" v-if="currentMenu === 3">
-				<NavItem :title="'关于'" :link="'/about'"></NavItem>
+				<div class="menu-section" v-if="currentMenu === 3">
+					<NavItem :title="'关于'" :link="'/about'"></NavItem>
+				</div>
 			</div>
 		</div>
-	</div>
+	</transition>
 </template>
 
 <style scoped>
@@ -104,6 +107,18 @@ function activate(page) {
 	z-index: 998;
 }
 
+.menu-fade-enter-active, .menu-fade-leave-active {
+	transition: opacity 0.35s ease;
+}
+
+.menu-fade-enter-from, .menu-fade-leave-to {
+	opacity: 0;
+}
+
+.menu-fade-enter-to, .menu-fade-leave-from {
+	opacity: 1;
+}
+
 .category {
 	display: flex;
 	flex-direction: row;
@@ -117,6 +132,7 @@ function activate(page) {
 		font-size: 1rem;
 		font-weight: bold;
 	}
+
 	margin: 20px 26px;
 	padding: 0px 30px;
 	cursor: pointer;
@@ -124,15 +140,18 @@ function activate(page) {
 	background-color: #ffffff00;
 	border-radius: 50px;
 }
-.active{
+
+.active {
 	background-color: rgba(255, 255, 255);
 	color: black;
 }
+
 .menu-section {
 	padding-left: 2rem;
 	display: flex;
 	flex-direction: column;
 }
+
 .fullscreen-menu {
 	padding-top: 5rem;
 	width: 50%;
@@ -143,9 +162,11 @@ function activate(page) {
 	background: linear-gradient(43deg, #10203d 0%, #1b3462 59%);
 	backdrop-filter: blur(20px);
 }
+
 .fullscreen-menu-father.opened .fullscreen-menu {
 	transform: translateX(0);
 }
+
 .animation {
 	width: 60px;
 	height: 100%;
@@ -235,6 +256,7 @@ function activate(page) {
 	.fullscreen-menu {
 		width: 100%;
 	}
+
 	.logo {
 		p {
 			display: none;
