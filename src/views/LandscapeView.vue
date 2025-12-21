@@ -11,7 +11,8 @@ const ImgMappings = [
 	"https://bucket.glowingstone.cn/artworks/pixel_patchouli.png",
 	"https://bucket.glowingstone.cn/artworks/pf_orin.png",
 	"https://bucket.glowingstone.cn/artworks/pf_koishi.jpg",
-	"https://bucket.glowingstone.cn/artworks/pf_reimu_and_marisa.png"
+	"https://bucket.glowingstone.cn/artworks/pf_reimu_and_marisa.png",
+	"https://bucket.glowingstone.cn/artworks/pf_cristmas.png",
 ];
 
 let intervalId = null;
@@ -32,12 +33,6 @@ onUnmounted(() => {
 
 
 <template>
-	<!--video class="bg-video" autoplay muted loop playsinline>
-		<source src="https://bucket.glowingstone.cn/output_compressed.mp4" type="video/mp4" />
-		您的浏览器不支持 video 标签。
-	<video/>
-	-->
-	<!-- img src="https://bucket.glowingstone.cn/comp_patchouli.jpg" class="bg-video" -->
 	<div class="main-content">
 		<NavigationBar/>
 		<div class="favorite" :style="`background-image: url(${currentHref});`">
@@ -129,7 +124,7 @@ onUnmounted(() => {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	backdrop-filter: blur(8px) brightness(60%);
 	background-color: rgba(0, 0, 0, 0.4);
 	pointer-events: none;
@@ -179,7 +174,6 @@ onUnmounted(() => {
 	overflow-y: auto;
 	scroll-behavior: smooth;
 	min-width: 100vw;
-	max-height: 100vh;
 	min-height: 100vh;
 	position: relative;
 	z-index: 1;

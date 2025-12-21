@@ -25,14 +25,13 @@ function push() {
 </script>
 
 <template>
-	<span class="nav_item" @click="push"> {{ title }}</span>
+	<span class="nav_item" @click="push"> <h2>{{ title }}</h2></span>
 </template>
 
 <style scoped>
 	.nav_item {
 		cursor: pointer;
 		padding: 0 1rem;
-		border-right: 1px solid #ccc;
 		font-size: larger;
 	}
 	.nav_item:last-child {
