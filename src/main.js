@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import NotFoundView from "@/views/NotFoundView.vue";
 import { faGithub, faQq } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import ArtworksView from "@/views/ArtworksView.vue";
 library.add(faArrowLeft, faGithub, faQq, faEnvelope, faArrowLeft)
 library.add(faClock)
 
@@ -21,6 +22,7 @@ const routes = [
     { path: '/redirect', component: Redirect },
     { path: '/about', component: AboutView },
     { path: '/docs', component: DocumentView },
+    { path: '/artworks', component: ArtworksView },
     {
         path: '/:catchAll(.*)',
         name: 'not-found',

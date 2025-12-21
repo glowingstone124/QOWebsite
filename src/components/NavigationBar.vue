@@ -60,8 +60,10 @@ function activate(page) {
 					</div>
 				</div>
 				<div class="menu-section" v-if="currentMenu === 1">
+					<NavItem :title="'主页'" :link="'/'"></NavItem>
 					<NavItem :title="'加入我们'" :link="'https://qm.qq.com/q/7rjlo2MSxa'"></NavItem>
 					<NavItem :title="'指南'" :link="'/docs'"></NavItem>
+					<NavItem :title="'艺术作品'" :link="'/artworks'"></NavItem>
 				</div>
 				<div class="menu-section" v-if="currentMenu === 2">
 					<NavItem :title="'QCommunity'" :link="'https://app.qoriginal.vip'"></NavItem>
