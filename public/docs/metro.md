@@ -2,7 +2,7 @@
 
 该示意图指示了当前已开通运营的Quantum Original轨道交通线路
 
-![Metro](https://bucket.glowingstone.cn/metro.svg)
+![Metro](https://bucket.glowingstone.cn/metro.png)
 
 # 二期工程规划图
 
