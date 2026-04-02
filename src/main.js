@@ -1,39 +1,15 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHistory } from "vue-router"
 import './style.css'
 import App from './App.vue'
-import LandscapeView from "./views/LandscapeView.vue"
-import Redirect from "./views/RedirectView.vue"
-import AboutView from "./views/AboutView.vue"
-import DocumentView from "./views/DocumentView.vue"
+import router from '@/router'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faArrowLeft, faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import NotFoundView from "@/views/NotFoundView.vue";
 import { faGithub, faQq } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import ArtworksView from "@/views/ArtworksView.vue";
-library.add(faArrowLeft, faGithub, faQq, faEnvelope, faArrowLeft)
+library.add(faArrowLeft, faGithub, faQq, faEnvelope)
 library.add(faClock)
-
-const routes = [
-    { path: '/', component: LandscapeView },
-    { path: '/redirect', component: Redirect },
-    { path: '/about', component: AboutView },
-    { path: '/docs', component: DocumentView },
-    { path: '/artworks', component: ArtworksView },
-    {
-        path: '/:catchAll(.*)',
-        name: 'not-found',
-        component: NotFoundView,
-    }
-]
-
-const router = createRouter({
-    history: createWebHistory(),
-    routes,
-})
 
 const app = createApp(App)
 

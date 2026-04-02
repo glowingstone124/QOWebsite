@@ -1,9 +1,9 @@
 <script setup>
-import DocumentSubiew from '/src/views/DocumentSubView.vue'
+import DocumentSubView from '@/views/DocumentSubView.vue'
 </script>
 
 <template>
-<DocumentSubiew/>
+	<DocumentSubView />
 </template>
 
 <style scoped>

@@ -1,228 +1,64 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-import LandScapeNewsComponents from "../components/LandscapeNewsComponents.vue";
-import NavigationBar from "../components/NavigationBar.vue";
+import { onMounted, onUnmounted, ref } from 'vue'
+import NavigationBar from '@/components/NavigationBar.vue'
+import HomeHero from '@/components/home/HomeHero.vue'
+import NewsCard from '@/components/home/NewsCard.vue'
+import { heroHighlights, heroSlides, homeNewsSections } from '@/data/home'
 
-const isVisible = ref(!sessionStorage.getItem("loaded"));
-const currentBgIndex = ref(0);
-const currentHref = ref("");
-
-const ImgMappings = [
-	"https://bucket.glowingstone.cn/artworks/pixel_patchouli.png",
-	"https://bucket.glowingstone.cn/artworks/pf_orin.png",
-	"https://bucket.glowingstone.cn/artworks/pf_koishi.jpg",
-	"https://bucket.glowingstone.cn/artworks/pf_reimu_and_marisa.png",
-	"https://bucket.glowingstone.cn/artworks/pf_cristmas.png",
-];
-
-let intervalId = null;
+const currentSlide = ref(heroSlides[0])
+const currentIndex = ref(0)
+let intervalId = null
 
 onMounted(() => {
-	currentHref.value = ImgMappings[currentBgIndex.value];
-
 	intervalId = setInterval(() => {
-		currentBgIndex.value = (currentBgIndex.value + 1) % ImgMappings.length;
-		currentHref.value = ImgMappings[currentBgIndex.value];
-	}, 7000);
-});
+		currentIndex.value = (currentIndex.value + 1) % heroSlides.length
+		currentSlide.value = heroSlides[currentIndex.value]
+	}, 7000)
+})
 
 onUnmounted(() => {
-	clearInterval(intervalId);
-});
+	clearInterval(intervalId)
+})
 </script>
 
-
 <template>
-	<div class="main-content">
-		<NavigationBar/>
-		<div class="favorite" :style="`background-image: url(${currentHref});`">
-		<div class="overlay"></div>
-			<div class="content">
-				<div class="image">
-					<img :src="currentHref" alt="">
+	<div class="page-shell">
+		<NavigationBar />
+		<div class="page-container">
+			<HomeHero :image="currentSlide" :highlights="heroHighlights" />
+
+			<section v-for="section in homeNewsSections" :key="section.title" class="news-section">
+				<div class="section-header">
+					<p class="eyebrow">Updates</p>
+					<h2 class="section-title">{{ section.title }}</h2>
+					<p class="section-copy">{{ section.description }}</p>
 				</div>
-				<div class="desc">
-					<h1>Pixel Fantasia-像素幻想</h1>
-					<p>现已作为卡面上线Quantum Original APP。</p>
+				<div class="news-stack">
+					<NewsCard
+						v-for="item in section.items"
+						:key="`${section.title}-${item.title}`"
+						v-bind="item"
+					/>
 				</div>
-			</div>
-		</div>
-		<div class="categories">
-			<div class="categories_inner">
-				<h1>最新新闻</h1>
-				<LandScapeNewsComponents
-					title="12月开发更新"
-					image="https://bucket.glowingstone.cn/2025dec.png"
-					description="版本更新详情"
-					time="2025-12-25"
-					link="/docs#/2025dec.md"
-				/>
-				<LandScapeNewsComponents
-					title="11月开发更新"
-					image="https://bucket.glowingstone.cn/cmp_nov-fs8.png"
-					description="版本更新详情"
-					time="2025-10-24"
-					link="/docs#/2025nov.md"
-				/>
-				<LandScapeNewsComponents
-					title="热区协议-情报1"
-					image="https://bucket.glowingstone.cn/coverhz1.png"
-					description="ERROR_CONTENT_NOT_AVAILABLE"
-					time="2025-08-24"
-					link="/docs#/hotzone_1.md"
-				/>
-				<LandScapeNewsComponents
-					title="秋季开发更新"
-					image="https://bucket.glowingstone.cn/visualupdate.png"
-					description="我们重构了整个官网落地页的视觉体验，并且兼顾了响应式效果。"
-					time="2025-08-24"
-					link="/docs#/visual_effects.md"
-				/>
-				<h1>社区运营</h1>
-				<LandScapeNewsComponents
-					title="玩家处理公告"
-					image="none"
-					description="关于hehenoob的最终处理报告"
-					time="2025-08-25"
-					link="/docs#/judgement_hehenoob.md"
-				/>
-			</div>
+			</section>
 		</div>
 	</div>
 </template>
 
-
 <style scoped>
-.categories {
-	display: flex;
+.news-section {
+	display: grid;
+	gap: 1rem;
 }
 
-.categories_inner {
-	h1{
-		font-size: 4rem;
-		font-weight: 400;
-	}
-	flex: 7;
-	align-content: center;
-	margin: 3rem 5rem;
+.section-header {
+	display: grid;
+	gap: 0.4rem;
+	padding: 0.25rem 0.2rem;
 }
 
-.status {
-	flex: 3;
-	align-content: center;
+.news-stack {
+	display: grid;
+	gap: 1rem;
 }
-
-.favorite {
-	background-size: cover;
-	display: flex;
-	height: 100vh;
-}
-
-.favorite .overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100vh;
-	backdrop-filter: blur(8px) brightness(60%);
-	background-color: rgba(0, 0, 0, 0.4);
-	pointer-events: none;
-	z-index: 1;
-}
-
-.favorite .content {
-	display: flex;
-	position: relative;
-	z-index: 2;
-}
-
-.desc {
-	flex: 4;
-	align-content: center;
-
-	h1 {
-		font-size: 3rem;
-	}
-
-	p {
-		font-size: 1.3rem;
-	}
-}
-
-.image {
-	align-content: center;
-	flex: 6;
-	padding: 4rem;
-
-	img {
-		border-radius: 15px;
-		width: 100%;
-		height: auto;
-		object-fit: contain;
-	}
-
-	img:hover {
-		-webkit-box-shadow: 0px 0px 37px 0px rgba(255, 255, 255, 0.9);
-		-moz-box-shadow: 0px 0px 37px 0px rgba(255, 255, 255, 0.9);
-		box-shadow: 0px 0px 37px 0px rgba(255, 255, 255, 0.9);
-	}
-}
-
-
-.main-content {
-	overflow-y: auto;
-	scroll-behavior: smooth;
-	min-width: 100vw;
-	min-height: 100vh;
-	position: relative;
-	z-index: 1;
-}
-
-@media (max-width: 768px) {
-	.content {
-		flex-direction: column;
-		align-items: center;
-		padding: 1rem;
-
-		.image {
-			padding: 0;
-			margin: 1rem 0;
-			max-height: 40vh;
-			flex: 8;
-			width: 100%;
-		}
-
-		.desc {
-			text-align: center;
-			padding: 0 1rem;
-			flex: 2;
-
-			h1 {
-				font-size: 1.8rem;
-				margin-bottom: 0.5rem;
-			}
-
-			p {
-				font-size: 1rem;
-				line-height: 1.4;
-			}
-		}
-	}
-
-	.favorite {
-		display: grid;
-		place-items: center;
-		align-items: center;
-		min-height: 100vh;
-		height: auto;
-		background-position: center;
-		background-size: cover;
-	}
-
-	.image img {
-		box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
-	}
-
-}
-
 </style>

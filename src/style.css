@@ -1,32 +1,184 @@
+@font-face {
+	font-family: '3270';
+	src: url('/src/assets/3270-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('/src/assets/Inter.ttf');
+}
+
+@font-face {
+	font-family: 'Bahnschrift';
+	src: url('/src/assets/bahnschrift.ttf');
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #070707;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	--font-display: 'Bahnschrift', 'Inter', sans-serif;
+	--font-body: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+	--bg: #071018;
+	--surface: rgba(10, 20, 30, 0.72);
+	--border: rgba(255, 255, 255, 0.08);
+	--border-strong: rgba(122, 219, 213, 0.28);
+	--text-primary: #edf6f5;
+	--text-secondary: #9fb6bd;
+	--accent: #7adbd5;
+	--accent-2: #bfe9df;
+	--shadow-md: 0 16px 36px rgba(0, 0, 0, 0.28);
+	--shadow-lg: 0 24px 54px rgba(0, 0, 0, 0.34);
+	--nav-height: 88px;
+	font-family: var(--font-body);
+	line-height: 1.5;
+	font-weight: 400;
+	color-scheme: dark;
+	color: var(--text-primary);
+	background-color: var(--bg);
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
-* {
-  font-family: "Inter", "NotoSans";
-  transition: all 0.3s ease-in-out;
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 }
-@font-face {
-  font-family: "3270";
-  src: url("/src/assets/3270-Regular.ttf")
+
+html {
+	scroll-behavior: smooth;
 }
-@font-face {
-  font-family: "Inter";
-  src: url("/src/assets/Inter.ttf");
+
+body {
+	margin: 0;
+	min-width: 320px;
+	background:
+		radial-gradient(circle at top, rgba(122, 219, 213, 0.16), transparent 24%),
+		radial-gradient(circle at bottom right, rgba(120, 156, 255, 0.12), transparent 20%),
+		linear-gradient(180deg, #08111a, #04090d 68%);
+	color: var(--text-primary);
+	font-family: var(--font-body);
 }
-@font-face {
-  font-family: "Bahnschrift";
-  src: url("/src/assets/bahnschrift.ttf");
+
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	background:
+		linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+	background-size: 72px 72px;
+	mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.38), transparent 85%);
+	opacity: 0.35;
 }
-@font-face {
-  font-family: "NotoSans";
-  src: url("/src/assets/NotoSans.ttf");
+
+a,
+button,
+input,
+textarea,
+select {
+	font: inherit;
+}
+
+button {
+	color: inherit;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+#app {
+	min-height: 100vh;
+}
+
+.page-shell {
+	min-height: 100vh;
+	padding: calc(var(--nav-height) + 1.6rem) clamp(1rem, 3vw, 2rem) 3rem;
+}
+
+.page-container {
+	position: relative;
+	z-index: 1;
+	width: min(1200px, 100%);
+	margin: 0 auto;
+	display: grid;
+	gap: 1.5rem;
+}
+
+.page-surface {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 28px;
+	backdrop-filter: blur(22px);
+	box-shadow: var(--shadow-lg);
+}
+
+.eyebrow {
+	margin: 0;
+	color: var(--accent);
+	font-size: 0.85rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.16em;
+}
+
+.section-title {
+	margin: 0;
+	font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+	line-height: 1.05;
+	font-family: var(--font-display);
+}
+
+.section-copy {
+	margin: 0;
+	max-width: 62ch;
+	color: var(--text-secondary);
+	line-height: 1.7;
+}
+
+.status-pill {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.58rem 0.95rem;
+	border-radius: 999px;
+	background: rgba(122, 219, 213, 0.12);
+	border: 1px solid rgba(122, 219, 213, 0.2);
+	color: var(--text-primary);
+}
+
+.action-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.9rem 1.2rem;
+	border-radius: 999px;
+	border: 1px solid rgba(122, 219, 213, 0.32);
+	background: linear-gradient(135deg, rgba(122, 219, 213, 0.22), rgba(12, 21, 32, 0.88));
+	color: var(--text-primary);
+	text-decoration: none;
+	transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.action-button:hover {
+	transform: translateY(-1px);
+	border-color: rgba(122, 219, 213, 0.48);
+}
+
+.action-button--ghost {
+	background: rgba(255, 255, 255, 0.03);
+	border-color: var(--border);
+}
+
+@media (max-width: 700px) {
+	.page-shell {
+		padding-inline: 0.9rem;
+		padding-bottom: 2rem;
+	}
+
+	.page-surface {
+		border-radius: 24px;
+	}
 }

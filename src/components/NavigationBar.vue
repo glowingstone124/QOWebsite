@@ -1,269 +1,240 @@
 <script setup>
-import {useRouter} from "vue-router";
-import {ref} from "vue";
-import NavItem from "@/components/NavItem.vue";
+import { computed, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { navigationSections } from '@/data/siteNavigation'
+import { navigateToLink } from '@/utils/navigation'
 
-const router = useRouter();
+const router = useRouter()
+const route = useRoute()
+const opened = ref(false)
 
-function push(link) {
-	if (link.startsWith("/")) {
-		router.push({path: link});
-	} else {
-		router.push({
-			path: '/redirect',
-			query: {url: link}
-		});
+const quickLinks = computed(() => navigationSections[0].items)
+
+function openLink(link) {
+	opened.value = false
+	navigateToLink(router, link)
+}
+
+watch(
+	() => route.fullPath,
+	() => {
+		opened.value = false
 	}
-}
-
-
-const opened = ref(false);
-const currentMenu = ref(1);
-
-function toggle() {
-	opened.value = !opened.value;
-}
-
-function activate(page) {
-	currentMenu.value = page;
-}
+)
 </script>
 
 <template>
-	<div class="nav left">
-		<div class="logo sub">
-			<img src="/qo_transparent_icon.png">
-			<p>Quantum Original 2 | 官方网站</p>
+	<header class="site-nav">
+		<div class="nav-shell">
+			<button class="brand-button" type="button" @click="openLink('/')">
+				<img src="/qologo.svg" alt="Quantum Original logo" />
+				<div>
+					<strong>Quantum Original 2</strong>
+					<span>官方网站</span>
+				</div>
+			</button>
+
+			<nav class="quick-links">
+				<button
+					v-for="item in quickLinks"
+					:key="item.link"
+					type="button"
+					class="quick-link"
+					:class="{ active: item.link === route.path }"
+					@click="openLink(item.link)"
+				>
+					{{ item.label }}
+				</button>
+			</nav>
+
+			<button class="menu-button" type="button" :aria-expanded="opened" @click="opened = !opened">
+				<span></span>
+				<span></span>
+			</button>
 		</div>
-		<!--div class="menu" @click="push('https://app.qoriginal.vip')"><h2>去App看看！</h2></div-->
-		<div class="sub menu-btn">
-			<div class="animation" :class="{ opened }"
-				 @click="toggle">
-				<div class="rectangle up"></div>
-				<div class="rectangle down"></div>
-			</div>
-		</div>
-	</div>
+	</header>
+
 	<transition name="menu-fade">
-		<div class="fullscreen-menu-father" :class="{opened}" v-show="opened">
-			<div class="fullscreen-left"></div>
-			<div class="fullscreen-menu">
-				<div class="category">
-					<div class="category-item" @click=activate(1) :class="{ active: currentMenu === 1 }">
-						<p>常用功能</p>
-					</div>
-					<div class="category-item" @click=activate(2) :class="{ active: currentMenu === 2 }">
-						<p>指向子页</p>
-					</div>
-					<div class="category-item" @click=activate(3) :class="{ active: currentMenu === 3 }">
-						<p>更多</p>
-					</div>
-				</div>
-				<div class="menu-section" v-if="currentMenu === 1">
-					<NavItem :title="'主页'" :link="'/'"></NavItem>
-					<NavItem :title="'加入我们'" :link="'https://qm.qq.com/q/7rjlo2MSxa'"></NavItem>
-					<NavItem :title="'指南'" :link="'/docs'"></NavItem>
-					<NavItem :title="'艺术作品'" :link="'/artworks'"></NavItem>
-				</div>
-				<div class="menu-section" v-if="currentMenu === 2">
-					<NavItem :title="'QCommunity'" :link="'https://app.qoriginal.vip'"></NavItem>
-					<NavItem :title="'Web Map'" :link="'https://map.qoriginal.vip'"></NavItem>
-					<NavItem :title="'捐赠'" :link="'https://afdian.com/a/glowingstone124'"></NavItem>
-				</div>
-				<div class="menu-section" v-if="currentMenu === 3">
-					<NavItem :title="'关于'" :link="'/about'"></NavItem>
-				</div>
-			</div>
+		<div v-if="opened" class="drawer-backdrop" @click="opened = false">
+			<aside class="drawer-panel page-surface" @click.stop>
+				<section v-for="section in navigationSections" :key="section.title" class="drawer-section">
+					<p class="drawer-title">{{ section.title }}</p>
+					<button
+						v-for="item in section.items"
+						:key="item.link"
+						type="button"
+						class="drawer-link"
+						:class="{ active: item.link === route.path }"
+						@click="openLink(item.link)"
+					>
+						{{ item.label }}
+					</button>
+				</section>
+			</aside>
 		</div>
 	</transition>
 </template>
 
 <style scoped>
-
-.menu-btn {
-	z-index: 999;
-}
-
-.fullscreen-left {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: #00000080;
-	backdrop-filter: blur(40px);
-	transition: transform 0.35s ease, opacity 0.35s ease;
-	opacity: 0;
-}
-
-.fullscreen-menu-father.opened .fullscreen-left {
-	opacity: 1;
-}
-
-.fullscreen-menu-father {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 998;
-}
-
-.menu-fade-enter-active, .menu-fade-leave-active {
-	transition: opacity 0.35s ease;
-}
-
-.menu-fade-enter-from, .menu-fade-leave-to {
-	opacity: 0;
-}
-
-.menu-fade-enter-to, .menu-fade-leave-from {
-	opacity: 1;
-}
-
-.category {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-}
-
-.category-item {
-	p {
-		font-size: 1rem;
-		font-weight: bold;
-	}
-
-	margin: 20px 26px;
-	padding: 0px 30px;
-	cursor: pointer;
-	transition: background-color 0.25s ease;
-	background-color: #ffffff00;
-	border-radius: 50px;
-}
-
-.active {
-	background-color: rgba(255, 255, 255);
-	color: black;
-}
-
-.menu-section {
-	padding-left: 2rem;
-	display: flex;
-	flex-direction: column;
-}
-
-.fullscreen-menu {
-	padding-top: 5rem;
-	width: 50%;
-	transform: translateX(100%);
-	height: 100%;
-	right: 0;
-	position: fixed;
-	background: linear-gradient(43deg, #10203d 0%, #1b3462 59%);
-	backdrop-filter: blur(20px);
-}
-
-.fullscreen-menu-father.opened .fullscreen-menu {
-	transform: translateX(0);
-}
-
-.animation {
-	width: 60px;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-}
-
-.rectangle {
-	width: 25px;
-	height: 3px;
-	background-color: #fff;
-	position: absolute;
-}
-
-.up {
-	transform: translateY(-6px) rotate(0deg);
-}
-
-.down {
-	transform: translateY(6px) rotate(0deg);
-}
-
-.animation.opened .up {
-	transform: translateY(0) rotate(45deg);
-}
-
-.animation.opened .down {
-	transform: translateY(0) rotate(-45deg);
-}
-
-
-.nav {
-	display: flex;
+.site-nav {
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 999;
-	align-items: baseline;
-	height: 60px;
-	margin: 8px;
+	z-index: 1100;
+	padding: 0.8rem clamp(1rem, 2vw, 1.5rem);
+}
+
+.nav-shell {
+	width: min(1200px, 100%);
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
 	justify-content: space-between;
+	gap: 1rem;
+	padding: 0.7rem 0.85rem;
+	background: rgba(6, 15, 23, 0.72);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 999px;
+	backdrop-filter: blur(24px);
+	box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
 }
 
-.sub {
-	backdrop-filter: blur(30px);
-	border-radius: 10px;
-	height: 100%;
-	background-color: rgba(155, 152, 152, 0.3);
-}
-
-.logo {
-	width: auto;
-	height: 100%;
-	display: flex;
-	border-radius: 10px;
+.brand-button {
+	display: inline-flex;
 	align-items: center;
+	gap: 0.85rem;
+	padding: 0;
+	border: none;
+	background: transparent;
+	color: var(--text-primary);
+	cursor: pointer;
+}
 
-	padding-right: 15px;
+.brand-button img {
+	width: 42px;
+	height: 42px;
+}
 
-	p {
-		font-weight: 800;
-		font-size: 1.2rem;
+.brand-button strong,
+.brand-button span {
+	display: block;
+	text-align: left;
+}
+
+.brand-button strong {
+	font-family: var(--font-display);
+	font-size: 1rem;
+}
+
+.brand-button span {
+	color: var(--text-secondary);
+	font-size: 0.85rem;
+}
+
+.quick-links {
+	display: flex;
+	align-items: center;
+	gap: 0.45rem;
+}
+
+.quick-link,
+.drawer-link,
+.menu-button {
+	border: none;
+	background: transparent;
+	color: var(--text-secondary);
+	cursor: pointer;
+}
+
+.quick-link {
+	padding: 0.7rem 0.95rem;
+	border-radius: 999px;
+	transition: background 0.2s ease, color 0.2s ease;
+}
+
+.quick-link:hover,
+.quick-link.active,
+.drawer-link:hover,
+.drawer-link.active {
+	color: var(--text-primary);
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.menu-button {
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.35rem;
+	width: 44px;
+	height: 44px;
+	border-radius: 999px;
+	padding: 0 11px;
+	background: rgba(255, 255, 255, 0.04);
+}
+
+.menu-button span {
+	display: block;
+	height: 2px;
+	width: 100%;
+	background: currentColor;
+	border-radius: 999px;
+}
+
+.drawer-backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: 1090;
+	background: rgba(2, 9, 15, 0.62);
+	backdrop-filter: blur(20px);
+	display: flex;
+	justify-content: flex-end;
+	padding: 5.5rem 1rem 1rem;
+}
+
+.drawer-panel {
+	width: min(360px, 100%);
+	padding: 1.1rem;
+	display: grid;
+	gap: 1rem;
+}
+
+.drawer-section {
+	display: grid;
+	gap: 0.45rem;
+}
+
+.drawer-title {
+	margin: 0 0 0.3rem;
+	color: var(--text-secondary);
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.drawer-link {
+	text-align: left;
+	padding: 0.9rem 1rem;
+	border-radius: 18px;
+}
+
+.menu-fade-enter-active,
+.menu-fade-leave-active {
+	transition: opacity 0.22s ease;
+}
+
+.menu-fade-enter-from,
+.menu-fade-leave-to {
+	opacity: 0;
+}
+
+@media (max-width: 820px) {
+	.quick-links {
+		display: none;
+	}
+
+	.brand-button span {
+		display: none;
 	}
 }
-
-.nav .sub:hover {
-	box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.5);
-}
-
-.logo img {
-	max-width: 100%;
-	max-height: 100%;
-	width: auto;
-	height: auto;
-	object-fit: contain;
-}
-
-.placeholder {
-	flex: 0.9;
-}
-
-@media (max-width: 768px) {
-	.fullscreen-menu {
-		width: 100%;
-	}
-
-	.logo {
-		p {
-			display: none;
-		}
-	}
-}
-
 </style>

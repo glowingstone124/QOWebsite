@@ -1,78 +1,68 @@
 <template>
-	<div class="container">
-		<div class="content">
-			<h1>重定向提示</h1>
-			<p class="description">
-				您即将离开Quantum Original官网，前往：<span class="url">{{ url || "未知网址" }}</span>
-				<br>
-				<span class="tip">如果您不希望离开，请点击“返回”</span>
-				<br>
-				<span class="tip">点击“继续”来跳转</span>
-			</p>
+	<div class="page-shell redirect-shell">
+		<div class="page-container">
+			<div class="content page-surface">
+				<h1>重定向提示</h1>
+				<p class="description">
+					您即将离开 Quantum Original 官网，前往：<span class="url">{{ url || '未知网址' }}</span>
+					<br />
+					<span class="tip">如果您不希望离开，请点击“返回”</span>
+					<br />
+					<span class="tip">点击“继续”来跳转</span>
+				</p>
 
-			<div class="button-group">
-				<button class="btn back" @click="goBack">返 回</button>
-				<button class="btn confirm" @click="confirmRedirect">继 续</button>
+				<div class="button-group">
+					<button class="btn back" @click="goBack">返 回</button>
+					<button class="btn confirm" @click="confirmRedirect">继 续</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'vue-router';
-import {onMounted} from "vue";
+import { onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
-const route = useRoute();
-const router = useRouter();
-const url = route.query.url;
+const route = useRoute()
+const router = useRouter()
+const url = route.query.url
 
-const whitelist = ["https://app.qoriginal.vip","https://docs.qoriginal.vip"];
+const whitelist = ['https://app.qoriginal.vip', 'https://docs.qoriginal.vip']
 
 const goBack = () => {
-	router.go(-1);
-};
+	router.go(-1)
+}
 
 const confirmRedirect = () => {
 	if (url) {
 		window.location.href = url
 	}
-};
+}
 
 onMounted(() => {
-	if (url && whitelist.indexOf(url) !== -1) {
+	if (url && whitelist.includes(url)) {
 		window.location.href = url
 	}
 })
 </script>
 
 <style scoped>
-.container {
-	display: flex;
-	flex-direction: column;
-	padding: 2rem;
-	min-height: 100vh;
-	box-sizing: border-box;
-	overflow-y: scroll;
-}
-
 .content {
-	background: #525050;
-	padding: 5rem 9rem;
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-	margin: auto;
+	padding: clamp(1.6rem, 4vw, 3rem);
+	margin: min(12vh, 6rem) auto 0;
 	width: 100%;
 	max-width: 600px;
-	position: relative;
 }
 
 h1 {
-	color: #eeebeb;
+	color: var(--text-primary);
 	font-size: clamp(1.5rem, 4vw, 2rem);
 	margin-bottom: 1.5rem;
 }
 
 .description {
-	color: #d5d4d4;
+	color: var(--text-secondary);
 	line-height: 1.6;
 	font-size: clamp(1rem, 3vw, 1.1rem);
 	margin-bottom: 2rem;
@@ -89,7 +79,7 @@ h1 {
 .tip {
 	display: inline-block;
 	margin-top: 0.8rem;
-	color: #d3d3d3;
+	color: var(--text-secondary);
 }
 
 .button-group {
@@ -102,7 +92,7 @@ h1 {
 
 .btn {
 	padding: 1rem 2rem;
-	border: none;
+	border: 1px solid transparent;
 	cursor: pointer;
 	font-weight: bold;
 	transition: all 0.3s;
@@ -112,32 +102,30 @@ h1 {
 }
 
 .back {
-	background: #f0f0f0;
-	color: #666;
+	background: rgba(255, 255, 255, 0.08);
+	color: var(--text-primary);
+	border-color: var(--border);
 }
 
 .back:hover {
-	background: #e0e0e0;
+	background: rgba(255, 255, 255, 0.12);
 }
 
 .confirm {
-	background: #13c40d;
-	color: white;
-	box-shadow: 0 4px 12px rgba(19, 196, 13, 0.3);
+	background: rgba(122, 219, 213, 0.18);
+	color: var(--text-primary);
+	border-color: rgba(122, 219, 213, 0.34);
+	box-shadow: 0 4px 12px rgba(122, 219, 213, 0.2);
 }
 
 .confirm:hover {
-	background: #10ad0b;
+	background: rgba(122, 219, 213, 0.28);
 	transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
-	.container {
-		padding: 1rem;
-	}
-
 	.content {
-		padding: 1.5rem;
+		margin-top: 1rem;
 	}
 
 	.button-group {

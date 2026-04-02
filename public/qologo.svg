@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1050" height="1296"
+     viewBox="0 0 1050 1296">
+    <polygon
+            points="250,180 760,280 760,940 250,840"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="8"
+            stroke-linejoin="miter"
+            stroke-linecap="butt"/>
+    <polygon
+            points="665,801 899.6,846 899.6,1143 665,1098"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="8"
+            stroke-linejoin="miter"
+            stroke-linecap="butt"/>
+</svg>
